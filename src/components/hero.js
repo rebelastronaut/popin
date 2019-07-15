@@ -28,7 +28,7 @@ class Hero extends Component {
           (image, i ) => {
             return (
               <StyledSymetryWrapper>
-                <Link to="/about#Who-We-Are">
+                <Link to="/about">
                   <BackgroundImg 
                     key={image.node.name} 
                     style={{ height: "100%" }}

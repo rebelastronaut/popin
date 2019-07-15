@@ -13,12 +13,12 @@ const Header = ({ siteTitle }) => (
           spacing={16}
         >
             <TitleStyle>
-          <StyledLink>
-            <Link to="/about/" style={{color:"white"}}>About Us</Link>
-          </StyledLink> 
-          <StyledLink>            
-            <Link to="/events/" style={{ color: "white" }}>Events</Link>
-          </StyledLink>
+              <StyledLink>
+                <Link to="/about/" style={{color:"white"}}>About Us</Link>
+              </StyledLink> 
+              <StyledLink>            
+                <Link to="/events/" style={{ color: "white" }}>Events</Link>
+              </StyledLink>
               <StyledLink>Join Us</StyledLink>
             </TitleStyle>
               pop in
