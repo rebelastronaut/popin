@@ -28,7 +28,6 @@ class Groups extends Component {
                     (image, i) => {
                         return (
                             <StyledSymetryWrapper>
-                              {console.log(this.props)}
                             <BackgroundImg key={image.node.name} style={{ height: "100%" }} fadeIn="true" fluid={image.node.childImageSharp.fluid} backgroundColor={`#040e18`} >
                               <Onhover style={{ backgroundColor: this.props.BackgroundColors[i] }}>
                                 <Title>{this.props.text[i]}</Title>

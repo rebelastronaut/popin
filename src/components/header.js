@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import React from "react"
 import styled from 'styled-components'
 import Grid from '@material-ui/core/Grid';
+import { fontSize } from "@material-ui/system";
 
 const Header = ({ siteTitle }) => (
   <header>
@@ -21,7 +22,9 @@ const Header = ({ siteTitle }) => (
               </StyledLink>
               <StyledLink>Join Us</StyledLink>
             </TitleStyle>
-              pop in
+            <StyledLink>
+              <Link to="/" style={{ color: "white", fontSize:"2em"  }}>pop in </Link>
+            </StyledLink>
             <TitleStyle>
               <StyledLink>Volunteer</StyledLink>
               <StyledLink>Donate</StyledLink>

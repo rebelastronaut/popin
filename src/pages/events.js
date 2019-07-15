@@ -10,13 +10,11 @@ const Events = ({ data }) => (
     <div>
         <Layout>
             <SEO title="Home" />
-            {console.log(data)}
             {data.allMarkdownRemark.edges.map(
                 (post, i) => {
                     return (
                         <ContentWrapper>
                             <Link to={post.node.frontmatter.path}>
-                                {console.log(post)}
                                 <BackgroundImg fluid={post.node.frontmatter.cover.childImageSharp.fluid} fadeIn={true}>
                                     <Hover>
                                         <TitleWrapper>{post.node.frontmatter.title} ({post.node.frontmatter.date})</TitleWrapper>

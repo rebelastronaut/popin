@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'
-import { StaticQuery, graphql } from 'gatsby';
-import { Link } from "gatsby"
+import { StaticQuery, graphql, Link } from 'gatsby';
 import BackgroundImg from "gatsby-background-image";
 import { NavigateNextRounded } from '@material-ui/icons';
 
@@ -21,7 +20,6 @@ class Events extends Component {
               <div style={{
                 display: "flex", height: "90%"
               }}>
-                  {console.log(data)}
                     {this.props.data.allMarkdownRemark.edges.map(
                         (image, i) => {
                             return (
