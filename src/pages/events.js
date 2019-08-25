@@ -1,30 +1,37 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import styled from 'styled-components'
 import BackgroundImg from "gatsby-background-image"
 import "../components/layout.css"
 
+const backgroundColors = ["#E9C904", "#8FC33A", "#62EDD6"]
+
 const Events = ({ data }) => (
     <div>
         <Layout>
-            <SEO title="Home" />
-            {data.allMarkdownRemark.edges.map(
+          <SEO title="Home" />
+            <Wrapper>
+              {console.log(data)}
+              {data.allMarkdownRemark.edges.map(
                 (post, i) => {
                     return (
                         <ContentWrapper>
-                            <Link to={post.node.frontmatter.path}>
-                                <BackgroundImg fluid={post.node.frontmatter.cover.childImageSharp.fluid} fadeIn={true}>
-                                    <Hover>
-                                        <TitleWrapper>{post.node.frontmatter.title} ({post.node.frontmatter.date})</TitleWrapper>
-                                    </Hover>
-                                </BackgroundImg>
-                            </Link>
-                        </ContentWrapper>
+                          <Link to={"/events/" + post.node.frontmatter.title.toLowerCase().split(" ").join("_")}>
+                              <BackgroundImg fluid={post.node.frontmatter.cover.childImageSharp.fluid} fadeIn={true}>
+                                  <ImgWrapper>
+                                      <TitleWrapper style={{ backgroundColor: backgroundColors[i % backgroundColors.length] }} >
+                                        <FontWrapper>{post.node.frontmatter.title} ({post.node.frontmatter.date})</FontWrapper>  
+                                      </TitleWrapper>
+                                  </ImgWrapper>
+                              </BackgroundImg>
+                          </Link>
+                      </ContentWrapper>
                     )
-                }
-            )}
+                  }
+              )}
+          </Wrapper>
         </Layout>
     </div>
 )
@@ -39,8 +46,7 @@ export const pageQuery = graphql`
       node {
         id
         frontmatter {
-          date(formatString: "MMMM DD, YYYY")
-          path
+          date(formatString: "DD-MM-YYYY")
           title
           cover {
             childImageSharp {
@@ -67,37 +73,41 @@ export const pageQuery = graphql`
 }
 `
 
-const ContentWrapper = styled.div`
+const Wrapper = styled.div`
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  padding-left: 19%;
-  width: 60%;
-  text-align: left;
-  height: 50vh;
-  font-size: 2em;
-  margin: 20px;
-  font-family: 'Open Sans', sans-serif;
+`
+
+const ContentWrapper = styled.div`
+  flex-grow: 1;
+  flex-shrink: 1;
+  padding-left: 10%;
+  width: 80%;
+  text-align: centre;
+  margin-bottom: 20px;
+  margin-top: 20px;
 `
 const TitleWrapper = styled.div`
-  margin: 20px;
-  text-align: left;
-  height: 10vh;
-  font-size: 1.5em;
-  text-align: center;
-  margin-top: 39vh;
-  color: white;
+  position: absolute;
   width: 100%;
-  background-color: #62EDD6;
-  font-family: 'Concert One', cursive;
-  text-decoration: none !important;
+  bottom: 20%;
+  height: 23%;
+  line-height: 50px;
 `
-const Hover = styled.div`
-  width: 100%;
-  height: 50vh;
-  display: flex;
-  overflow: hidden;
+const FontWrapper = styled.div`
   text-align: center;
-  text-decoration: none !important;
-  color: white
+  font-size: 3em;
+  color: white;
+  height: 100px;
+  white-space: pre-wrap;
+  font-family: 'Concert One', cursive;
+  @media (max-width: 600px) {
+    font-size: 1.5em;
+  }
+`
+
+const ImgWrapper = styled.div`
+  width: 100%;
+  height: 500px;
+  border-radius: 20px;
 `

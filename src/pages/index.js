@@ -11,9 +11,9 @@ const Index = () => (
   <Layout>
     <SEO title="Home" />
     <Hero/>
-    <Groups BackgroundColors={["#62EDD6", "#FE65B7"]} text={["Saturday Group", "Tuesdays Art Group"]}/>
-    <Events BackgroundColors={["#E9C904", "#8FC33A", "#62EDD6"]}/>
-    <Groups BackgroundColors={["#E9C904","#8FC33A"]} text={["Join Us", "Donate"]}/>
+    <Groups BackgroundColors={["#E9C904", "#8FC33A", "#62EDD6"]} path={"/groups/"}/>
+    <Events BackgroundColors={["#E9C904", "#8FC33A", "#62EDD6"]} path={"/events/"}/>
+    <Groups BackgroundColors={["#E9C904", "#8FC33A", "#62EDD6"]} path={"/static_pages/"} /> 
   </Layout>
 )
 

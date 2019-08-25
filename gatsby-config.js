@@ -14,6 +14,19 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-plugin-env-variables`,
+      options: {
+        whitelist: ["MAPS_API_KEY"]
+      },
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        path: `${__dirname}/src/pages/images`,
+        name: "blog_images"
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `pages`,
@@ -28,11 +41,22 @@ module.exports = {
         cropFocus: `CENTER`,
       },
     },
-
     {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
+          {
+            resolve: `gatsby-remark-relative-images`,
+            options: {
+              name: "blog_images"
+            }
+          },
+          { 
+              resolve: `gatsby-plugin-netlify-cms-paths`,
+              options: {
+                cmsConfig: `/static/admin/config.yml`
+              },
+          },
           {
             resolve: `gatsby-remark-images`,
             options: {
@@ -40,7 +64,10 @@ module.exports = {
               // the content container as this plugin uses this as the
               // base for generating different widths of each image.
               maxWidth: 1080,
-            },  
+
+              linkImagesToOriginal: false,
+
+            },
           },
           {
             resolve: `gatsby-remark-autolink-headers`,
@@ -50,6 +77,7 @@ module.exports = {
               removeAccents: true,
             },
           },
+          `gatsby-remark-images-zoom`,
         ],
       },
     },
@@ -63,6 +91,15 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         // icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+      },
+    },
+    `gatsby-plugin-netlify-cms`,  
+    'gatsby-plugin-netlify-identity-widget',
+    `gatsby-plugin-netlify-cms-paths`,
+    {
+      resolve: 'gatsby-plugin-netlify-cms',
+      options: {
+        modulePath: `${__dirname}/src/cms/cms.js`,
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

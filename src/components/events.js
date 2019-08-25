@@ -1,48 +1,58 @@
 import React, { Component } from 'react';
-import styled from 'styled-components'
+import styled from 'styled-components';
 import { StaticQuery, graphql, Link } from 'gatsby';
 import BackgroundImg from "gatsby-background-image";
-import { NavigateNextRounded } from '@material-ui/icons';
 
 class Events extends Component {
-    constructor(props) {
-        super(props);
-    }
+  constructor(props) {
+      super(props);
+  }
 
-    // use React lifecycle methods as needed
+  render() {
+    const isEvents = this.props.path === "/events/";
+    const isStatic = this.props.path === "/static_pages/";
 
-    render() {
-        const { data } = this.props; // add more props here as needed
-        return (
-            <div style={{
-                display: "block", height: "90%"
-            }}>
-              <div style={{
-                display: "flex", height: "90%"
-              }}>
-                    {this.props.data.allMarkdownRemark.edges.map(
-                        (image, i) => {
-                            return (
-                              <Link to={image.node.frontmatter.path}>
-                              <ContentWrapper>
-                                  <BackgroundImg key={image.node.frontmatter.title} fadeIn={true} fluid={image.node.frontmatter.cover.childImageSharp.fluid}>
-                                    <Hover>
-                                      <TitleWrapper style={{ backgroundColor: this.props.BackgroundColors[i] }}>{image.node.frontmatter.title} ({image.node.frontmatter.date})</TitleWrapper>
-                                    </Hover>
-                                  </BackgroundImg>
-                              </ContentWrapper>
-                              </Link>
-                            )
-                        }
-                    )}
-                  </div>
-                  <Link to="/events">
-              <EventsWrapper> More Events<NavigateNextRounded style={{fontSize: "1em", top: "20px"}}/> </EventsWrapper>
+    return (
+        <div>
+          <EventsWrapper>
+            {this.props.data.allMarkdownRemark.edges.map(
+                (image, i) => {
+                  if (image.node.fileAbsolutePath.includes(this.props.path))
+                    return (
+                      <ContentWrapper>
+                        {isStatic ? (
+                          <Link to={image.node.frontmatter.title.toLowerCase().split(" ").join("_")}>
+                            <BackgroundImg key={image.node.frontmatter.title} style={{ height: "100%", borderRadius: "20px"}} fadeIn={true} fluid={image.node.frontmatter.cover.childImageSharp.fluid}>
+                              <Hover>
+                                <TitleWrapper style={{ backgroundColor: this.props.BackgroundColors[i % this.props.BackgroundColors.length] }}>{image.node.frontmatter.title} </TitleWrapper>
+                              </Hover>
+                            </BackgroundImg>
+                          </Link>):(
+                          <Link to={this.props.path + image.node.frontmatter.title.toLowerCase().split(" ").join("_")}>
+                            <BackgroundImg key={image.node.frontmatter.title} style={{ height: "100%", borderRadius: "20px" }} fadeIn={true} fluid={image.node.frontmatter.cover.childImageSharp.fluid}>
+                              <Hover>
+                                <TitleWrapper style={{ backgroundColor: this.props.BackgroundColors[i % this.props.BackgroundColors.length] }}>{image.node.frontmatter.title}  {isEvents ? ((image.node.frontmatter.date)) : (<div />)}</TitleWrapper>
+                              </Hover>
+                            </BackgroundImg>
+                          </Link>
+                        )}
+                      </ContentWrapper>
+                    )
+                }
+            )}
+          </EventsWrapper>
+          {isEvents ? (
+            <Link to={this.props.path}>
+              <MoreEventsWrapper>
+                <MoreEvents> More Events</MoreEvents>
+              </MoreEventsWrapper>
             </Link>
-            </div>
-        );
+            ):(<div/>)
+          }
+        </div>
+    );
 
-    }
+  }
 
 }
 export default props => (
@@ -50,13 +60,13 @@ export default props => (
     <StaticQuery
         query={graphql`
         {
-          allMarkdownRemark(limit: 3, sort: {order: DESC, fields: [frontmatter___date]}, filter: {fileAbsolutePath: {regex: "/events/"}}) {
+          allMarkdownRemark(sort: {order: DESC, fields: [frontmatter___date]}) {
             edges {
               node {
                 id
+                fileAbsolutePath
                 frontmatter {
-                  date(formatString: "MMMM DD, YYYY")
-                  path
+                  date(formatString: "DD-MM-YYYY")
                   title
                   cover {
                     childImageSharp {
@@ -85,41 +95,54 @@ export default props => (
         render={data => <Events data={data} {...props} />}
     />
 );
-const ContentWrapper = styled.div`
-  width: 32vw;
-  height: 50vh;
-  overflow: hidden;
-  padding: 10px;
-`
-const Hover = styled.div`
+
+const EventsWrapper = styled.div`
   width: 100%;
   height: 50vh;
-  display: flex;
+  max-height: 50vh;
+  overflow-y:hidden;
   overflow: hidden;
-  text-align: center;
-  text-decoration: none !important;
-  color: white
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+`
+
+const ContentWrapper = styled.div`
+  // overflow: hidden;
+  padding: 10px;
+  min-width: 300px;
+  min-height: 48vh;
+  flex-grow: 1;
+  flex-shrink: 1;
+`
+const Hover = styled.div`
+  position: absolute;
+  width: 100%;
+  bottom: 10%;
+  height:130px;
 `
 
 const TitleWrapper = styled.div`
-  text-align: left;
-  height: 10vh;
-  font-size: 2em;
   text-align: center;
-  margin-top: 39vh;
+  font-size: 2em;
   color: white;
-  width: 100%;
-  background-color: #62EDD6;
+  height: 100px;
   font-family: 'Concert One', cursive;
-  text-decoration: none !important;
 `
-const EventsWrapper = styled.div`
+
+const MoreEventsWrapper = styled.div`
+  width: 100%;
+  height: 50px;
   display: block;
+  background-color: #FE65B7;
+  border-radius: 20px;
+`
+
+const MoreEvents = styled.div`
   text-align: center;
-  height: 5vh;
   font-size: 2em;
   color: white;
-  width: 100%;
-  background-color: #FE65B7;
   font-family: 'Concert One', cursive;
+
 `

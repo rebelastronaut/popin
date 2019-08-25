@@ -28,14 +28,14 @@ class Hero extends Component {
           (image, i ) => {
             return (
               <StyledSymetryWrapper>
-                <Link to="/about">
+                <Link to="/about_us">
                   <BackgroundImg 
                     key={image.node.name} 
-                    style={{ height: "100%" }}
+                    style={{ height: "100%", borderRadius: "20px" }}
                     fadeIn={true} 
                     fluid={image.node.childImageSharp.fluid}>
                     <Onhover>
-                      <MenuLink style={{ backgroundColor: this.backgroundcolors[i] }}>{this.text[i]}</MenuLink>
+                      <Title style={{ backgroundColor: this.backgroundcolors[i] }}>{this.text[i]}</Title>
                     </Onhover>
                   </BackgroundImg>
                 </Link>
@@ -80,35 +80,34 @@ export default props => (
 
 );
 
-const StyledSymetryWrapper = styled.div`
-  width: 33vw;
-  height: 87vh;
-  overflow: hidden;
-  padding: 10px;
-`
 const StyledWrapper = styled.div`
   width: 100%;
-  height: 100%;
+  height: 89vh;
+  min-height: 600px;
+  border-radius: 20;
   display: flex;
-  overflow: hidden;
-  text-decoration: none;
+  flex-direction: row;
+  flex-wrap: wrap;
 `
+
+const StyledSymetryWrapper = styled.div`
+  overflow: hidden;
+  padding: 10px;
+  min-width: 300px;
+  flex-grow: 1;
+  flex-shrink: 1;
+  border-radius: 20;
+`
+
 const Onhover = styled.div`
+  position: absolute;
   width: 100%;
-  height: 25vh;
-  margin-top: 50vh;
-  display: flex;
-  overflow: hidden;
-  text-align: center;
-  text-decoration: none !important;
-  color: white
+  bottom: 20%;
 `
-const MenuLink = styled.div`
-  width: 100%;
-  height: 80vh;
+const Title = styled.div`
   text-align: center;
   font-size: 5em;
-  margin-top: 10vh;
-  text-decoration: none !important;
+  color: white;
+  height: 100px;
   font-family: 'Concert One', cursive;
 `
