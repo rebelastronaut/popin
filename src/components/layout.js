@@ -28,7 +28,7 @@ const Layout = ({ children }) => {
     <>
       <link href="https://fonts.googleapis.com/css?family=Concert+One&display=swap" rel="stylesheet"></link>
       <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"></link>
-      
+      <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
       <Header siteTitle={data.site.siteMetadata.title} />
       <main>{children}</main>
       <Footer/>
