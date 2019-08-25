@@ -23,6 +23,7 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-netlify-cms`,
+    'gatsby-plugin-netlify-identity-widget',
     {
       resolve:`gatsby-plugin-sharp`,
       options: {
