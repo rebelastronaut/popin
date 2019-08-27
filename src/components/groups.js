@@ -28,7 +28,7 @@ class Groups extends Component {
                     (image, i) => {
                         return (
                             <StyledSymetryWrapper>
-                            <BackgroundImg key={image.node.name} style={{ height: "100%" }} fadeIn="true" fluid={image.node.childImageSharp.fluid} backgroundColor={`#040e18`} >
+                            <BackgroundImg key={image.node.name} style={{ height: "100%", borderRadius:"20px" }} fadeIn="true" fluid={image.node.childImageSharp.fluid} backgroundColor={`#040e18`} >
                               <Onhover style={{ backgroundColor: this.props.BackgroundColors[i] }}>
                                 <Title>{this.props.text[i]}</Title>
                               </Onhover>
@@ -75,36 +75,38 @@ export default props => (
 
 );
 
-const StyledSymetryWrapper = styled.div`
-  width: 50vw;
-  height: 50vh;
-  overflow: hidden;
-  padding: 10px;
-  text-decoration: none !important;
-  transition: 1s;
-`
 const StyledWrapper = styled.div`
   width: 100%;
-  height: 100%;
+  height: 87vh;
+  min-height: 600px;
+  border-radius: 20;
   display: flex;
-  overflow: hidden;
-  text-decoration: none;
+  flex-direction: row;
+  flex-wrap: wrap;
 `
-const Onhover = styled.div`
-  width: 100%;
-  height: 15vh;
-  margin-top: 20vh;
-  display: flex;
+
+const StyledSymetryWrapper = styled.div`
   overflow: hidden;
-  text-align: center;
-  text-decoration: none !important;
+  padding: 10px;
+  min-width: 300px;
+  flex-grow: 1;
+  flex-shrink: 1;
+  border-radius: 20px;
+`
+
+const Onhover = styled.div`
+  position: absolute;
+  width: 100%;
+  bottom: 10%;
+  height:130px;
 `
 const Title = styled.div`
-  width: 100%;
-  text-align: center;
   font-size: 4em;
-  margin-top: 5vh;
   color: white;
-  text-decoration: none !important;
+  position: relative;
+  margin: 10px;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-family: 'Concert One', cursive;
 `

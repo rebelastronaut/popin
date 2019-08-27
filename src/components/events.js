@@ -122,4 +122,5 @@ const EventsWrapper = styled.div`
   width: 100%;
   background-color: #FE65B7;
   font-family: 'Concert One', cursive;
+  border-radius: 20px;
 `
