@@ -2,6 +2,7 @@
 path: "/about/"
 date: "2019-05-04"
 title: "About Us"
+cover: "AC3I9969.JPG"
 ---
 
 - [Who We Are](#Who-We-Are)
