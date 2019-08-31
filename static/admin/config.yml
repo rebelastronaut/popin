@@ -11,7 +11,7 @@ collections:
   - name: "popiin"
     label: "Blog"
     identifier_field: title
-    folder: "src/pages"
+    folder: "src/pages/events/*"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     editor:
