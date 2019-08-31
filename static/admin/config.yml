@@ -4,17 +4,18 @@ backend:
 
 
 media_folder_relative: true
-media_folder: static/img
-public_folder: /img
+media_folder: src/pages
+# public_folder: /img
 
 collections:
   - name: "popiin"
     label: "Blog"
-    folder: "content/blog"
+    identifier_field: title
+    folder: "src/pages"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     editor:
-     preview: false
+     preview: true
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Publish Date", name: "date", widget: "datetime" }

@@ -27,7 +27,7 @@ class Groups extends Component {
                 {this.props.data.AllPostImages.edges.map(
                     (image, i) => {
                         return (
-                            <StyledSymetryWrapper>
+                          <StyledSymetryWrapper>
                             <BackgroundImg key={image.node.name} style={{ height: "100%", borderRadius:"20px" }} fadeIn="true" fluid={image.node.childImageSharp.fluid} backgroundColor={`#040e18`} >
                               <Onhover style={{ backgroundColor: this.props.BackgroundColors[i] }}>
                                 <Title>{this.props.text[i]}</Title>
@@ -77,7 +77,7 @@ export default props => (
 
 const StyledWrapper = styled.div`
   width: 100%;
-  height: 87vh;
+  height: 30vh;
   min-height: 600px;
   border-radius: 20;
   display: flex;
@@ -91,7 +91,6 @@ const StyledSymetryWrapper = styled.div`
   min-width: 300px;
   flex-grow: 1;
   flex-shrink: 1;
-  border-radius: 20px;
 `
 
 const Onhover = styled.div`
@@ -104,6 +103,7 @@ const Title = styled.div`
   font-size: 4em;
   color: white;
   position: relative;
+  text-align: center;
   margin: 10px;
   top: 30%;
   left: 50%;
