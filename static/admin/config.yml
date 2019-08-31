@@ -8,7 +8,7 @@ media_folder: src/pages
 # public_folder: /img
 
 collections:
-  - name: "popiin"
+  - name: "popin"
     label: "Blog"
     identifier_field: title
     folder: "src/pages/events/*"
