@@ -4,12 +4,12 @@ backend:
 
 
 media_folder_relative: true
-media_folder: src/pages
+media_folder: src/pages/events
 # public_folder: /img
 
 collections:
   - name: "popin"
-    label: "Blog"
+    label: "posts"
     identifier_field: title
     folder: "src/pages/events/*"
     create: true
@@ -20,4 +20,6 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Publish Date", name: "date", widget: "datetime" }
       - { label: "Description", name: "description", widget: "string" }
+      - { label: "Path", name: "path", widget: "string" }
+      - { label: "Cover Image", name: "cover", widget: "string" }
       - { label: "Body", name: "body", widget: "markdown" }
