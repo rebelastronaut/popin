@@ -8,10 +8,25 @@ media_folder: src/pages/events
 # public_folder: /img
 
 collections:
-  - name: "popin"
-    label: "posts"
+  - name: "Events"
+    label: "events"
     identifier_field: title
-    folder: "/{{path}}/"
+    folder: "/src/pages/events/"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    editor:
+     preview: true
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Path", name: "path", widget: "string" }
+      - { label: "Cover Image", name: "cover", widget: "string" }
+      - { label: "Images", name: "images", widget: "list"}
+      - { label: "Body", name: "body", widget: "markdown" }
+  - name: "About"
+    label: "about"
+    identifier_field: title
+    folder: "/src/pages/about/"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     editor:
