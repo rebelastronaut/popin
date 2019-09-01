@@ -1,9 +1,9 @@
-import React from "react"
-import { graphql } from "gatsby"
-import Layout from "../components/layout"
-import styled from 'styled-components'
-import Img from "gatsby-image"
-import Carousel from "nuka-carousel"
+import React from "react";
+import { graphql } from "gatsby";
+import Layout from "../components/layout";
+import styled from 'styled-components';
+import Img from "gatsby-image";
+import Carousel from "nuka-carousel";
 import { ExpandMoreRounded } from '@material-ui/icons';
 
 export default function Template({data}) {
@@ -11,68 +11,102 @@ export default function Template({data}) {
     <Layout>
       <div className="about-container">
         <div className="about">
-          <Carousel autoplay wrapAround >
-            {data.images.edges.map(
-              (image, i) => {
-                return (
-                  <Gallery>
-                    <div>
-                      <Img key={image.node.name} fadeIn fluid={image.node.childImageSharp.fluid} />
-                    </div>
-                  </Gallery>
-                )
-              }
-            )}
-          </Carousel>
-            {console.log(data.images)}
-          <TitleWrapper>
-              {data.project.frontmatter.title}
-            <ExpandMoreRounded style={{ display: "block", padding: "10px", fontSize:"1em", textAlign:"center", width: "98%"  }}/>
-            </TitleWrapper>
-          <ContentWrapper>
-            <div
-              className="about"
-              dangerouslySetInnerHTML={{ __html: data.project.html }}
-            />
-          </ContentWrapper>
-        </div>
+          {data.allMarkdownRemark.edges.map(
+            (post, i) => {
+              return (
+                <div>
+                  <Carousel autoplay wrapAround >
+                    {console.log(data)}
+                    { post.node.frontmatter.images.map(
+                      (image, i) => {
+                        return (
+                          <div>
+                            <Gallery>
+                              {console.log(image)}
+                              <Img key={image.id} fadeIn fluid={image.childImageSharp.fluid} />
+                            </Gallery>
+                          </div>
+                        )
+                      }
+                    )
+                  }
+                </Carousel>
+                <TitleWrapper>
+                    {post.node.frontmatter.title}
+                <ExpandMoreRounded style={{ display: "block", padding: "10px", fontSize:"1em", textAlign:"center", width: "98%"  }}/>
+                </TitleWrapper>
+                <ContentWrapper>
+                  <div
+                    className="about"
+                    dangerouslySetInnerHTML={{ __html: post.node.html }}
+                  />
+                </ContentWrapper>
+              </div>
+            )
+          }
+        )}
       </div>
-    </Layout>
+    </div>
+  </Layout>
   )
 }
 
 export const pageQuery = graphql`
-query($path: String!, $absolutePathRegex: String!) {
-  images: allFile(
-    filter: {
-      absolutePath: { regex: $absolutePathRegex }
-      extension: { regex: "/(jpg)|(png)|(tif)|(tiff)|(webp)|(jpeg)/" }
-    }
-    sort: { fields: name, order: ASC }
-  ) {
+{
+  allMarkdownRemark(filter: {fileAbsolutePath: {regex: "/events/"}}) {
     edges {
       node {
-        name
-        childImageSharp {
-          fluid {
-            originalName
-            src
-            srcSet
-            aspectRatio
-            sizes
+        id
+        html
+        frontmatter {
+          date(formatString: "MMMM DD, YYYY")
+          path
+          title
+          images {
+            id
+            name
+            absolutePath
+            childImageSharp {
+              fluid {
+                base64
+                tracedSVG
+                aspectRatio
+                src
+                srcSet
+                srcWebp
+                srcSetWebp
+                sizes
+                originalImg
+                originalName
+                presentationWidth
+                presentationHeight
+              }
+            }
+          }
+          cover {
+            id
+            name
+            childImageSharp {
+              fluid {
+                base64
+                tracedSVG
+                aspectRatio
+                src
+                srcSet
+                srcWebp
+                srcSetWebp
+                sizes
+                originalImg
+                originalName
+                presentationWidth
+                presentationHeight
+              }
+            }
           }
         }
       }
     }
   }
-  project: markdownRemark(frontmatter: { path: { eq: $path } }) {
-      html
-      frontmatter {
-        date(formatString: "MMMM DD, YYYY")
-        path
-        title
-      }
-    }
 }
 `
 

@@ -11,7 +11,7 @@ collections:
   - name: "Events"
     label: "events"
     identifier_field: title
-    folder: "/src/pages/events/"
+    folder: "src/pages/events"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     editor:
@@ -20,13 +20,13 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Publish Date", name: "date", widget: "datetime" }
       - { label: "Path", name: "path", widget: "string" }
-      - { label: "Cover Image", name: "cover", widget: "string" }
-      - { label: "Images", name: "images", widget: "list"}
+      - { label: "Cover Image", name: "cover", widget: "image" }
+      - { label: "Images", name: "images", widget: "image"}
       - { label: "Body", name: "body", widget: "markdown" }
   - name: "About"
     label: "about"
     identifier_field: title
-    folder: "/src/pages/about/"
+    folder: "src/pages/about"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     editor:
@@ -35,6 +35,6 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Publish Date", name: "date", widget: "datetime" }
       - { label: "Path", name: "path", widget: "string" }
-      - { label: "Cover Image", name: "cover", widget: "string" }
-      - { label: "Images", name: "images", widget: "list"}
+      - { label: "Cover Image", name: "cover", widget: "image" }
+      - { label: "Images", name: "images", widget: "image"}
       - { label: "Body", name: "body", widget: "markdown" }
