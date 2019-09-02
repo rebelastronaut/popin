@@ -36,8 +36,6 @@ exports.onCreateNode = ({ node, actions }) => {
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
-  const projectTemplate = require.resolve('./src/templates/blogTemplate.js')
-
   const result = await wrapper(
     graphql(`
         {
@@ -61,7 +59,13 @@ exports.createPages = async ({ graphql, actions }) => {
   projectPosts.forEach((n, index) => {
     const next = index === 0 ? null : projectPosts[index - 1]
     const prev = index === projectPosts.length - 1 ? null : projectPosts[index + 1]
-    {console.log(n)}
+    console.log(n)
+    if (n.node.frontmatter.path === "/about/") {
+      projectTemplate = require.resolve('./src/templates/aboutTemplate.js')
+    }
+    else {
+      projectTemplate = require.resolve('./src/templates/blogTemplate.js')
+    }
     createPage({
       path: n.node.frontmatter.path,
       component: projectTemplate,

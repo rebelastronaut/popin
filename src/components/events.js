@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import styled from 'styled-components'
 import { StaticQuery, graphql, Link } from 'gatsby';
 import BackgroundImg from "gatsby-background-image";
-import { NavigateNextRounded } from '@material-ui/icons';
 
 class Events extends Component {
     constructor(props) {

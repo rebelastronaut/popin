@@ -15,14 +15,29 @@ collections:
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     editor:
-     preview: true
+    preview: true
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Publish Date", name: "date", widget: "datetime" }
       - { label: "Path", name: "path", widget: "string" }
       - { label: "Cover Image", name: "cover", widget: "image" }
-      - { label: "Images", name: "images", widget: "image"}
-      - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Images"
+        name: "images"
+        widget: "list"
+        fields:
+        - label: CoverImage
+          Name: CoverImage
+          widget: image
+          media_library:
+            config:
+              multiple: false
+        - label: GalleryImage
+          Name: Galleryt Image
+          widget: image
+          media_library:
+            config:
+              multiple: true
+    - { label: "Body", name: "body", widget: "markdown" }
   - name: "About"
     label: "about"
     identifier_field: title
@@ -32,9 +47,23 @@ collections:
     editor:
      preview: true
     fields:
+    - label: "Images"
+      name: "images"
+      widget: "list"
+      fields:
+      - label: CoverImage
+        Name: CoverImage
+        widget: image
+        media_library:
+          config:
+            multiple: false
+      - label: GalleryImage
+        Name: Galleryt Image
+        widget: image
+        media_library:
+          config:
+            multiple: true
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Publish Date", name: "date", widget: "datetime" }
       - { label: "Path", name: "path", widget: "string" }
-      - { label: "Cover Image", name: "cover", widget: "image" }
-      - { label: "Images", name: "images", widget: "image"}
       - { label: "Body", name: "body", widget: "markdown" }

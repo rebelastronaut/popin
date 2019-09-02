@@ -9,20 +9,18 @@ import { ExpandMoreRounded } from '@material-ui/icons';
 export default function Template({data}) {
   return (
     <Layout>
-      <div className="about-container">
-        <div className="about">
+      <div className="blog-container">
+        <div className="blog">
           {data.allMarkdownRemark.edges.map(
             (post, i) => {
               return (
                 <div>
                   <Carousel autoplay wrapAround >
-                    {console.log(data)}
                     { post.node.frontmatter.images.map(
                       (image, i) => {
                         return (
                           <div>
                             <Gallery>
-                              {console.log(image)}
                               <Img key={image.id} fadeIn fluid={image.childImageSharp.fluid} />
                             </Gallery>
                           </div>
