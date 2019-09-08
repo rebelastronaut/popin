@@ -16,7 +16,7 @@ export default function Template({data}) {
               return (
                 <div>
                   <Carousel autoplay wrapAround >
-                    { post.node.frontmatter.images.map(
+                    { post.node.frontmatter.gallery_image.map(
                       (image, i) => {
                         return (
                           <div>
@@ -60,7 +60,7 @@ export const pageQuery = graphql`
           date(formatString: "MMMM DD, YYYY")
           path
           title
-          images {
+          gallery_image {
             id
             name
             absolutePath

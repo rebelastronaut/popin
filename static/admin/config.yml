@@ -5,7 +5,11 @@ backend:
 
 media_folder_relative: true
 media_folder: src/pages/events
-# public_folder: /img
+media_library:
+  name: uploadcare
+  config:
+    publickey: b0adf2c4e2b5e2c100af
+public_folder: /img
 
 collections:
   - name: "Events"
@@ -14,30 +18,27 @@ collections:
     folder: "src/pages/events"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    editor:
     preview: true
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Path", name: "path", widget: "string" }
-      - { label: "Cover Image", name: "cover", widget: "image" }
-      - label: "Images"
-        name: "images"
-        widget: "list"
-        fields:
-        - label: CoverImage
-          Name: CoverImage
-          widget: image
-          media_library:
-            config:
-              multiple: false
-        - label: GalleryImage
-          Name: Galleryt Image
-          widget: image
-          media_library:
-            config:
-              multiple: true
-    - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Publish Date"
+        name: "date"
+        widget: "datetime"
+      - label: "Path"
+        name: "path"
+        widget: "string"
+      - label: "Cover Image"
+        name: "cover"
+        widget: "image"
+      - label: GalleryImage
+        name: "gallery_image"
+        widget: list
+        field: {label: Image, name: image, widget: image}
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
   - name: "About"
     label: "about"
     identifier_field: title
@@ -47,23 +48,27 @@ collections:
     editor:
      preview: true
     fields:
-    - label: "Images"
-      name: "images"
-      widget: "list"
-      fields:
-      - label: CoverImage
-        Name: CoverImage
-        widget: image
-        media_library:
-          config:
-            multiple: false
-      - label: GalleryImage
-        Name: Galleryt Image
-        widget: image
-        media_library:
-          config:
-            multiple: true
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Path", name: "path", widget: "string" }
-      - { label: "Body", name: "body", widget: "markdown" }
+    - label: "Cover Image"
+      name: "cover"
+      widget: "image"
+      media_library:
+        config:
+          multiple: true
+    - label: Gallery Image
+      name: "gallery_image"
+      widget: image
+      media_library:
+        config:
+          multiple: true
+    - label: "Title"
+      name: "title"
+      widget: "string"
+    - label: "Publish Date"
+      name: "date"
+      widget: "datetime"
+    - label: "Path"
+      name: "path"
+      widget: "string"
+    - label: "Body"
+      name: "body"
+      widget: "markdown"
