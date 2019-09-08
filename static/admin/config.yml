@@ -4,11 +4,7 @@ backend:
 
 
 media_folder_relative: true
-media_folder: src/pages/events
-media_library:
-  name: uploadcare
-  config:
-    publickey: b0adf2c4e2b5e2c100af
+media_folder: src/pages/images
 public_folder: /img
 
 collections:
