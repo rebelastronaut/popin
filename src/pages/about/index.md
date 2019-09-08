@@ -3,7 +3,7 @@ path: "/about/"
 date: "2019-05-04"
 title: "About Us"
 cover: "AC3I9969.JPG"
-images:
+gallery:
   - AC3I9969.JPG
   - groupshot1.JPG
   - musicdaycircle.jpg

@@ -28,8 +28,8 @@ collections:
       - label: "Cover Image"
         name: "cover"
         widget: "image"
-      - label: GalleryImage
-        name: "gallery_image"
+      - label: Gallery Images
+        name: "gallery"
         widget: list
         field: {label: Image, name: image, widget: image}
       - label: "Body"
@@ -47,15 +47,10 @@ collections:
     - label: "Cover Image"
       name: "cover"
       widget: "image"
-      media_library:
-        config:
-          multiple: true
-    - label: Gallery Image
-      name: "gallery_image"
-      widget: image
-      media_library:
-        config:
-          multiple: true
+    - label: Gallery Images
+      name: "gallery"
+      widget: list
+      field: {label: Image, name: image, widget: image}
     - label: "Title"
       name: "title"
       widget: "string"
