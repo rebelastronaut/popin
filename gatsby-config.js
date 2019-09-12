@@ -35,7 +35,7 @@ module.exports = {
           { 
               resolve: `gatsby-plugin-netlify-cms-paths`,
               options: {
-                cmsConfig: `/static/admin/config.yml`,
+                cmsConfig: `/static/admin/config.yml`
               },
           },
           {
