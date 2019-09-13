@@ -1,11 +1,10 @@
 ---
-title: testing2
-date: 2019-09-12T21:56:47.570Z
-path: events/boat-trip2
+title: About
+date: 2019-09-12T18:42:54.253Z
+path: /about
 cover: ../images/20170103_192829.jpg
 gallery:
   - image: ../images/20161129_191639.jpg
   - image: ../images/20170103_194023.jpg
-  - image: ../images/20161115_184135.jpg
 ---
 test test

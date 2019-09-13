@@ -6,7 +6,7 @@ backend:
 
 media_folder_relative: true
 media_folder: src/pages/images
-public_folder: /img
+public_folder: ../images
 
 collections:
   - name: "Events"

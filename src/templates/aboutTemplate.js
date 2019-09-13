@@ -52,7 +52,7 @@ export default function Template({ data }) {
 
 export const pageQuery = graphql`
 {
-  allMarkdownRemark(filter: {fileAbsolutePath: {regex: "/about/"}}) {
+  allMarkdownRemark(filter: {fileAbsolutePath: {regex: "/events/"}}) {
     edges {
       node {
         id
@@ -62,23 +62,19 @@ export const pageQuery = graphql`
           path
           title
           gallery {
-            id
-            name
-            absolutePath
-            childImageSharp {
-              fluid {
-                base64
-                tracedSVG
-                aspectRatio
-                src
-                srcSet
-                srcWebp
-                srcSetWebp
-                sizes
-                originalImg
-                originalName
-                presentationWidth
-                presentationHeight
+            image {
+              absolutePath
+              id
+              name
+              childImageSharp {
+                fluid {
+                  originalImg
+                  aspectRatio
+                  base64
+                  presentationHeight
+                  originalName
+                  presentationWidth
+                }
               }
             }
           }
@@ -107,6 +103,7 @@ export const pageQuery = graphql`
     }
   }
 }
+
 `
 
 const TitleWrapper = styled.div`

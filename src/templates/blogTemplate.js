@@ -21,7 +21,7 @@ export default function Template({data}) {
                         return (
                           <div>
                             <Gallery>
-                              <Img key={image.id} fadeIn fluid={image.childImageSharp.fluid} />
+                              <Img key={image.image.id} fadeIn fluid={image.image.childImageSharp.fluid} />
                             </Gallery>
                           </div>
                         )
@@ -61,23 +61,19 @@ export const pageQuery = graphql`
           path
           title
           gallery {
-            id
-            name
-            absolutePath
-            childImageSharp {
-              fluid {
-                base64
-                tracedSVG
-                aspectRatio
-                src
-                srcSet
-                srcWebp
-                srcSetWebp
-                sizes
-                originalImg
-                originalName
-                presentationWidth
-                presentationHeight
+            image {
+              absolutePath
+              id
+              name
+              childImageSharp {
+                fluid {
+                  originalImg
+                  aspectRatio
+                  base64
+                  presentationHeight
+                  originalName
+                  presentationWidth
+                }
               }
             }
           }
@@ -106,6 +102,7 @@ export const pageQuery = graphql`
     }
   }
 }
+
 `
 
 const TitleWrapper = styled.div`
