@@ -22,7 +22,7 @@ export default function Template({ data }) {
                                                 return (
                                                     <div>
                                                         <Gallery>
-                                                            <Img key={image.id} fadeIn fluid={image.childImageSharp.fluid} />
+                                                            <Img key={image.image.id} fadeIn fluid={image.image.childImageSharp.fluid} />
                                                         </Gallery>
                                                     </div>
                                                 )
@@ -51,15 +51,15 @@ export default function Template({ data }) {
 }
 
 export const pageQuery = graphql`
+query($absolutePathRegex: String!)
 {
-  allMarkdownRemark(filter: {fileAbsolutePath: {regex: "/events/"}}) {
+  allMarkdownRemark(filter: {fileAbsolutePath: {eq: $absolutePathRegex}}) {
     edges {
       node {
         id
         html
         frontmatter {
           date(formatString: "MMMM DD, YYYY")
-          path
           title
           gallery {
             image {
@@ -68,12 +68,18 @@ export const pageQuery = graphql`
               name
               childImageSharp {
                 fluid {
-                  originalImg
-                  aspectRatio
                   base64
-                  presentationHeight
+                  tracedSVG
+                  aspectRatio
+                  src
+                  srcSet
+                  srcWebp
+                  srcSetWebp
+                  sizes
+                  originalImg
                   originalName
                   presentationWidth
+                  presentationHeight
                 }
               }
             }

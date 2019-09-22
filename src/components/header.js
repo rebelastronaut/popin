@@ -18,17 +18,15 @@ const Header = ({ siteTitle }) => (
         </DropdownMenu>
       </MobileStyle>
       <TitleStyle>
-        <Link to="about">
-          <StyledLink>
-            About Us
-          </StyledLink> 
-        </Link>           
-        <Link to="/events/">
-          <StyledLink> 
+        <StyledLink to="/about/">
+          About Us
+        </StyledLink>   
+        <StyledLink to="/events/">
             Events
-          </StyledLink> 
-        </Link>
-        <StyledLink>Join Us</StyledLink>
+        </StyledLink> 
+        <StyledLink>
+          Join Us
+        </StyledLink>
       </TitleStyle>
       <StyledLink>
         <Link to="/" style={{ color: "white", fontSize:"2em"  }}>pop in </Link>

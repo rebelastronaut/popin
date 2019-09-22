@@ -11,7 +11,6 @@ class Events extends Component {
     // use React lifecycle methods as needed
 
     render() {
-        const { data } = this.props; // add more props here as needed
         return (
             <div>
               <EventsWrapper>
@@ -19,7 +18,8 @@ class Events extends Component {
                     (image, i) => {
                         return (
                           <ContentWrapper>
-                            <Link to={image.node.frontmatter.path}>
+                            {console.log(this)}
+                            <Link to={"/events/" + image.node.frontmatter.title.toLowerCase()}>
                               <BackgroundImg key={image.node.frontmatter.title} style={{ height: "100%", borderRadius: "20px"}} fadeIn={true} fluid={image.node.frontmatter.cover.childImageSharp.fluid}>
                                 <Hover>
                                   <TitleWrapper style={{ backgroundColor: this.props.BackgroundColors[i] }}>{image.node.frontmatter.title} ({image.node.frontmatter.date})</TitleWrapper>
@@ -53,7 +53,6 @@ export default props => (
                 id
                 frontmatter {
                   date(formatString: "MMMM DD, YYYY")
-                  path
                   title
                   cover {
                     childImageSharp {

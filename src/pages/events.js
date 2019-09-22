@@ -9,22 +9,26 @@ import "../components/layout.css"
 const Events = ({ data }) => (
     <div>
         <Layout>
-            <SEO title="Home" />
-            {data.allMarkdownRemark.edges.map(
+          <SEO title="Home" />
+            <Wrapper>
+              {data.allMarkdownRemark.edges.map(
                 (post, i) => {
                     return (
                         <ContentWrapper>
-                            <Link to={post.node.frontmatter.path}>
-                                <BackgroundImg fluid={post.node.frontmatter.cover.childImageSharp.fluid} fadeIn={true}>
-                                    <Hover>
-                                        <TitleWrapper>{post.node.frontmatter.title} ({post.node.frontmatter.date})</TitleWrapper>
-                                    </Hover>
-                                </BackgroundImg>
-                            </Link>
-                        </ContentWrapper>
+                          <Link to={"/events/" + post.node.frontmatter.title.toLowerCase()}>
+                              <BackgroundImg fluid={post.node.frontmatter.cover.childImageSharp.fluid} fadeIn={true}>
+                                  <ImgWrapper>
+                                      <TitleWrapper>
+                                        <FontWrapper>{post.node.frontmatter.title} ({post.node.frontmatter.date})</FontWrapper>  
+                                      </TitleWrapper>
+                                  </ImgWrapper>
+                              </BackgroundImg>
+                          </Link>
+                      </ContentWrapper>
                     )
-                }
-            )}
+                  }
+              )}
+          </Wrapper>
         </Layout>
     </div>
 )
@@ -40,7 +44,6 @@ export const pageQuery = graphql`
         id
         frontmatter {
           date(formatString: "MMMM DD, YYYY")
-          path
           title
           cover {
             childImageSharp {
@@ -67,37 +70,36 @@ export const pageQuery = graphql`
 }
 `
 
-const ContentWrapper = styled.div`
+const Wrapper = styled.div`
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  padding-left: 19%;
+`
+
+const ContentWrapper = styled.div`
+  flex-grow: 1;
+  flex-shrink: 1;
+  padding-left: 20%;
   width: 60%;
   text-align: left;
-  height: 50vh;
-  font-size: 2em;
-  margin: 20px;
-  font-family: 'Open Sans', sans-serif;
+  margin-bottom: 20px;
+  margin-top: 20px;
 `
 const TitleWrapper = styled.div`
   margin: 20px;
-  text-align: left;
-  height: 10vh;
-  font-size: 1.5em;
-  text-align: center;
-  margin-top: 39vh;
-  color: white;
+  height: 20%;
+  margin-bottom: 10%;
+  border-radius: 20px;
   width: 100%;
   background-color: #62EDD6;
-  font-family: 'Concert One', cursive;
   text-decoration: none !important;
 `
-const Hover = styled.div`
+const FontWrapper = styled.div`
+  font-family: 'Concert One', cursive;
+  color: white;
+  font-size: 3em;
+`
+
+const ImgWrapper = styled.div`
   width: 100%;
-  height: 50vh;
-  display: flex;
-  overflow: hidden;
-  text-align: center;
-  text-decoration: none !important;
-  color: white
+  height: 500px;
 `

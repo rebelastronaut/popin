@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import BackgroundImg from "gatsby-background-image"
-import Button from '@material-ui/core/Button';
-import { Typography } from '@material-ui/core';
 import styled from 'styled-components'
 
 class Groups extends Component {

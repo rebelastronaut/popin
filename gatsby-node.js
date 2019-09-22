@@ -1,6 +1,6 @@
 const path = require('path');
 const _ = require('lodash');
-
+const { fmImagesToRelative } = require('gatsby-remark-relative-images');
 // graphql function doesn't throw an error so we have to check to check for the result.errors to throw manually
 const wrapper = promise =>
   promise.then(result => {
@@ -10,7 +10,7 @@ const wrapper = promise =>
     return result
   })
 
-exports.onCreateNode = ({ node, actions }) => {
+exports.onCreateNode = ({ node, actions }) => { 
   const { createNodeField } = actions
   let slug
   // Search for MDX filenodes
@@ -31,6 +31,7 @@ exports.onCreateNode = ({ node, actions }) => {
     }
     createNodeField({ node, name: 'slug', value: slug })
   }
+  fmImagesToRelative(node);
 }
 
 exports.createPages = async ({ graphql, actions }) => {
@@ -45,7 +46,8 @@ exports.createPages = async ({ graphql, actions }) => {
                 id
                 fileAbsolutePath
                 frontmatter {
-                  path
+                  title
+                  date
                 }
               }
             }
@@ -60,18 +62,21 @@ exports.createPages = async ({ graphql, actions }) => {
     const next = index === 0 ? null : projectPosts[index - 1]
     const prev = index === projectPosts.length - 1 ? null : projectPosts[index + 1]
     console.log(n)
-    if (n.node.frontmatter.path === "/about/") {
-      projectTemplate = require.resolve('./src/templates/aboutTemplate.js')
+    if (n.node.fileAbsolutePath.indexOf('events') >= 0) {
+      projectTemplate = require.resolve('./src/templates/blogTemplate.js');
+      slug = "/events/" + n.node.frontmatter.title.toLowerCase();
     }
     else {
-      projectTemplate = require.resolve('./src/templates/blogTemplate.js')
+      projectTemplate = require.resolve('./src/templates/aboutTemplate.js');
+      slug = n.node.frontmatter.title.toLowerCase();
     }
     createPage({
-      path: n.node.frontmatter.path,
+      path: slug,
       component: projectTemplate,
       context: {
-        // Pass the current directory of the project as regex in context so that the GraphQL query can filter by it
-        absolutePathRegex: n.node.frontmatter.path,
+        slug: slug,
+        date: n.node.frontmatter.date,
+        absolutePathRegex: n.node.fileAbsolutePath,
       },
     })
   })

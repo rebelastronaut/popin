@@ -14,6 +14,13 @@ module.exports = {
       },
     },
     {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        path: `${__dirname}/src/pages/images`,
+        name: "blog_images"
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `pages`,
@@ -32,6 +39,12 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
+          {
+            resolve: `gatsby-remark-relative-images`,
+            options: {
+              name: "blog_images"
+            }
+          },
           { 
               resolve: `gatsby-plugin-netlify-cms-paths`,
               options: {
@@ -45,7 +58,10 @@ module.exports = {
               // the content container as this plugin uses this as the
               // base for generating different widths of each image.
               maxWidth: 1080,
-            },  
+
+              linkImagesToOriginal: false,
+
+            },
           },
           {
             resolve: `gatsby-remark-autolink-headers`,
@@ -55,6 +71,7 @@ module.exports = {
               removeAccents: true,
             },
           },
+          `gatsby-remark-images-zoom`,
         ],
       },
     },
@@ -73,6 +90,12 @@ module.exports = {
     `gatsby-plugin-netlify-cms`,  
     'gatsby-plugin-netlify-identity-widget',
     `gatsby-plugin-netlify-cms-paths`,
+    {
+      resolve: 'gatsby-plugin-netlify-cms',
+      options: {
+        modulePath: `${__dirname}/src/cms/cms.js`,
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

@@ -16,10 +16,10 @@ collections:
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     editor:
-      preview: false
+      preview: true
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Publish Date", name: "date", widget: "datetime"}
+      - { label: "Publish Date", name: "date", widget: "datetime", format: "DD-MM-YYYY"}
       - { label: "Path", name: "path", widget: "string"}
       - { label: "Cover Image", name: "cover", widget: "image"}
       - { label: Gallery Images, name: "gallery", widget: list, fields: [{ label: Image, name: image, widget: image }]}
@@ -30,7 +30,7 @@ collections:
     identifier_field: title
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     editor:
-     preview: false
+     preview: true
     files:
       - file: "src/pages/about/index.md"
         label: "About"
@@ -39,6 +39,6 @@ collections:
         - { label: "Cover Image", name: "cover", widget: "image" }
         - { label: "Gallery Images", name: "gallery", widget: list, fields: [{label: Image, name: image, widget: image}]}
         - { label: "Title", name: "title", widget: "string"}
-        - { label: "Publish Date", name: "date", widget: "datetime"}
+        - { label: "Publish Date", name: "date", widget: "datetime", format: "DD-MM-YYYY"}
         - { label: "Path", name: "path", widget: "string"}
         - { label: "Body", name: "body", widget: "markdown"}
