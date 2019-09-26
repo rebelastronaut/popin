@@ -2,52 +2,67 @@ import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
 import styled from 'styled-components'
-import { FaBars } from 'react-icons/fa'
+import { FaBars, FaTimes } from 'react-icons/fa'
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
-const Header = ({ siteTitle }) => (
-  <header>
-    <HeaderStyle>
-      <MobileStyle>
-        <FaBars style={{position: "absolute", top:"10px", left: "12px"}}/>
-        <Menu>
-          <Link>Home</Link>
-          <Link>About</Link>
-        </Menu>
-        <DropdownMenu>
+export default class Header extends React.Component {
+  state = {
+    showMenu: false,
+  }
 
-        </DropdownMenu>
-      </MobileStyle>
-      <TitleStyle>
-        <StyledLink to="/about/">
-          About Us
-        </StyledLink>   
-        <StyledLink to="/events/">
-            Events
-        </StyledLink> 
-        <StyledLink>
-          Join Us
-        </StyledLink>
-      </TitleStyle>
-      <StyledLink>
-        <Link to="/" style={{ color: "white", fontSize:"2em"  }}>pop in </Link>
-      </StyledLink>
-      <TitleStyle>
-        <StyledLink>Volunteer</StyledLink>
-        <StyledLink>Donate</StyledLink>
-      </TitleStyle>
-    </HeaderStyle>
-  </header>
-)
+  componentDidMount = () => {
+    this.setState({ showMenu: false });
+  }
 
-Header.propTypes = {
-  siteTitle: PropTypes.string,
+  handleClick = (e, index) => {
+    e.preventDefault()
+    this.setState({ showMenu: !this.state.showMenu });
+    disableBodyScroll(this.targetElement);
+  };
+
+  closeModal = () => {
+    this.setState({ showMenu: false })
+    enableBodyScroll(this.targetElement);
+  }
+
+  render() {
+    return(
+      <header>
+        <HeaderStyle>
+          <MobileStyle>
+            <FaBars onClick={this.handleClick} style={{position: "absolute", top:"10px", left: "0px"}}/>
+            <DropdownMenu visible={this.state.showMenu}>
+              <StyledLink> About Us</StyledLink>
+              <StyledLink> Events</StyledLink>
+              <StyledLink> Join Us</StyledLink>
+              <StyledLink> Volunteer</StyledLink>
+              <StyledLink> Donate</StyledLink>
+              <FaTimes onClick={this.closeModal} style={{ fontSize: "1.5em" }} />
+            </DropdownMenu>
+          </MobileStyle>
+          <TitleStyle>
+            <StyledLink to="/about/">
+              About Us
+            </StyledLink>   
+            <StyledLink to="/events/">
+                Events
+            </StyledLink> 
+            <StyledLink>
+              Join Us
+            </StyledLink>
+          </TitleStyle>
+          <StyledLink>
+            <Link to="/" style={{ color: "white", fontSize:"2em"  }}>pop in </Link>
+          </StyledLink>
+          <TitleStyle>
+            <StyledLink>Volunteer</StyledLink>
+            <StyledLink>Donate</StyledLink>
+          </TitleStyle>
+        </HeaderStyle>
+      </header>
+    )
+  }
 }
-
-Header.defaultProps = {
-  siteTitle: ``,
-}
-
-export default Header
 
 const HeaderStyle = styled.div`
   height: 100px;
@@ -97,11 +112,22 @@ const MobileStyle = styled.div`
   }
   `
 const DropdownMenu = styled.div`
-
-`
-const Menu = styled.div`
-  display: none;
-  &:checked { 
-    display: block
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  font-size: 1em;
+  padding: 10px;
+  flex-direction: column;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background: #FE65B7;
+  z-index: 1000;
+  height: auto;
+  transition: height 2s ease;
+  opacity: ${props => (props.visible ? '1' : '0')};
+  visibility: ${props => (props.visible ? 'visible' : 'hidden')};
 `

@@ -2,54 +2,45 @@ import React from "react";
 import { graphql } from "gatsby";
 import Layout from "../components/layout";
 import styled from 'styled-components';
-import Img from "gatsby-image";
-import Carousel from "nuka-carousel";
-import { ExpandMoreRounded } from '@material-ui/icons';
+import BackgroundImg from 'gatsby-background-image';
+import hastToHyperscript from "hast-to-hyperscript";
 
-export default function Template({ data }) {
+const renderHtmlToReact = node => {
+  return hastToHyperscript(React.createElement, node);
+};
+
+export default class PageTemplate extends React.Component {
+  render() {
     return (
         <Layout>
-            <div className="about-container">
-                <div className="about">
-                  {console.log(data)}
-                    {data.allMarkdownRemark.edges.map(
-                        (post, i) => {
-                            return (
-                                <div>
-                                    <Carousel autoplay wrapAround >
-                                        {post.node.frontmatter.gallery.map(
-                                            (image, i) => {
-                                                return (
-                                                    <div>
-                                                        <Gallery>
-                                                            <Img key={image.image.id} fadeIn fluid={image.image.childImageSharp.fluid} />
-                                                        </Gallery>
-                                                    </div>
-                                                )
-                                            }
-                                        )
-                                        }
-                                    </Carousel>
-                                    <TitleWrapper>
-                                        {post.node.frontmatter.title}
-                                        <ExpandMoreRounded style={{ display: "block", padding: "10px", fontSize: "1em", textAlign: "center", width: "98%" }} />
-                                    </TitleWrapper>
-                                    <ContentWrapper>
-                                        <div
-                                            className="about"
-                                            dangerouslySetInnerHTML={{ __html: post.node.html }}
-                                        />
-                                    </ContentWrapper>
-                                </div>
-                            )
-                        }
-                    )}
-                </div>
-            </div>
+          {this.props.data.allMarkdownRemark.edges.map(
+              (post, i) => {
+                  return (
+                      <div>
+                        <Wrapper>
+                          <ImgWrapper>
+                          <BackgroundImg key={post.node.frontmatter.cover.childImageSharp.id} fadeIn={true} style={{ height: "100%", borderRadius: "20px" }} fluid={post.node.frontmatter.cover.childImageSharp.fluid}>
+                            <Hero>
+                              <TitleWrapper>
+                                {post.node.frontmatter.title}
+                              </TitleWrapper>
+                            </Hero>
+                          </BackgroundImg>
+                        </ImgWrapper>
+                            <ContentWrapper>
+                                <Content>
+                                 {renderHtmlToReact(post.node.htmlAst)}    
+                                </Content>
+                            </ContentWrapper>
+                          </Wrapper>
+                      </div>
+                  )
+              }
+          )}
         </Layout>
-    )
+      )
+  } 
 }
-
 export const pageQuery = graphql`
 query($absolutePathRegex: String!)
 {
@@ -57,6 +48,7 @@ query($absolutePathRegex: String!)
     edges {
       node {
         id
+        htmlAst
         html
         frontmatter {
           date(formatString: "MMMM DD, YYYY")
@@ -112,39 +104,43 @@ query($absolutePathRegex: String!)
 
 `
 
+const Wrapper = styled.div`
+  display: relative;
+  height: auto;
+  padding: 20px;
+  width: 70%;
+  padding-left: 15%;
+`
+const ImgWrapper = styled.div`
+  display: relative;
+  height: 50vh;
+`
+
+
 const TitleWrapper = styled.div`
-  width: 97.5vw;
-  height: 15vh;
+  position: relative;
+  width: 100%;
+  height: 70px;
+  top: 60%;
   text-align: center;
   color: white;
   font-family: 'Concert One', cursive;
-  font-size: 5em;
+  font-size: 6em;
   background-color: #62EDD6;
-  margin: 10px;
-  right: 5vw;
+  border-radius: 20px;
 `
 
 const ContentWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  padding-left: 19%;
-  width: 60%;
-  text-align: left;
-  min-height: 200px;
-  top: -100%;
-  font-size: 2em;
   font-family: 'Open Sans', sans-serif;
+  font-size: 30px;
 `
-
-const Gallery = styled.div`
+const Hero = styled.div`
   display: block;
-  height: 70vh;
-  padding 10px;
-`
-
-const Scroll = styled.div`
-  display: block;
+  height: 100%;
   font-size: .5em;
   padding: 20px;
+`
+
+const Content = styled.div`
+  padding-bottom: 100px;
 `

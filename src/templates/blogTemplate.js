@@ -31,7 +31,6 @@ export default class BlogTemplate extends React.Component {
   retreiveGalleryLength = () => {
     this.props.data.allMarkdownRemark.edges.map(
       (post, i) => { 
-        console.log(post.node.frontmatter.gallery.length)
         this.setState(
           {
             gallerylength: post.node.frontmatter.gallery.length
@@ -94,56 +93,53 @@ export default class BlogTemplate extends React.Component {
     const { showLightbox, selectedImage } = this.state
     return (
       <Layout>
-        <div className="blog-container">
-          <div className="blog">
-            {this.props.data.allMarkdownRemark.edges.map(
-              (post, i) => {
-                const images = post.node.frontmatter.gallery
-                return (
-                  <div>
-                    <Wrapper>
-                        <BackgroundImg key={post.node.frontmatter.cover.childImageSharp.id} fadeIn={true} style={{ height: "100%", borderRadius: "20px" }} fluid={post.node.frontmatter.cover.childImageSharp.fluid}>
-                          <Hero>
-                            <TitleWrapper>
-                              {post.node.frontmatter.title}
-                              <ExpandMoreRounded style={{ display: "block", fontSize: "1em", textAlign: "center", width: "98%" }} />
-                            </TitleWrapper>
-                          </Hero>
-                        </BackgroundImg>
-                          <Gallery>
-                        {post.node.frontmatter.gallery.map((img, i) => {
-                             return (                             
-                             <GalleryItem key={img.image.childImageSharp.id}>
-                                <a href={img.image.childImageSharp.fluid.src} onClick={e => this.handleClick(e, i)}>
-                                  <Img fluid={img.image.childImageSharp.fluid} />
-                                </a>
-                              </GalleryItem>
-                            )})}
-                          </Gallery>
-                          <LightboxModal visible={showLightbox} onKeyUp={e => this.handleKeyDown(e)}>
-                            <LightboxContent>
-                            <Img fluid={images[selectedImage].image.childImageSharp.fluid} />
-                              <Controls>
-                                <KeyboardArrowLeft onClick={this.goBack} disabled={selectedImage === 0} style={{ display: "block", color: "white", fontSize: "50px" }} />
-                                <Clear onClick={this.closeModal} style={{ display: "block", color: "white", fontSize: "50px" }} />
-                                <KeyboardArrowRight onClick={this.goForward} disabled={selectedImage === images.length - 1} style={{ display: "block", color: "white", fontSize: "50px" }} />
-                              </Controls>
-                            </LightboxContent>
-                          </LightboxModal>
-                      <ContentWrapper>
-                        <Date>{post.node.frontmatter.date}</Date>
-                        <div
-                          className="about"
-                          dangerouslySetInnerHTML={{ __html: post.node.html }}
-                        />
-                      </ContentWrapper>
-                    </Wrapper>
-                  </div>
-                )
-              }
-           )}
-        </div>
-      </div>
+        <Wrapper>
+        {this.props.data.allMarkdownRemark.edges.map(
+          (post, i) => {
+            const images = post.node.frontmatter.gallery
+            return (
+              <div>
+                <ImgWrapper>
+                    <BackgroundImg key={post.node.frontmatter.cover.childImageSharp.id} fadeIn={true} style={{ height: "50vh", borderRadius: "20px" }} fluid={post.node.frontmatter.cover.childImageSharp.fluid}>
+                      <Hero>
+                        <TitleWrapper>
+                          {post.node.frontmatter.title}
+                          <ExpandMoreRounded style={{ display: "block", fontSize: "1em", textAlign: "center", width: "98%" }} />
+                        </TitleWrapper>
+                      </Hero>
+                    </BackgroundImg>
+                </ImgWrapper>
+                      <Gallery>
+                    {post.node.frontmatter.gallery.map((img, i) => {
+                          return (                             
+                          <GalleryItem key={img.image.childImageSharp.id}>
+                            <a href={img.image.childImageSharp.fluid.src} onClick={e => this.handleClick(e, i)}>
+                              <Img fluid={img.image.childImageSharp.fluid} />
+                            </a>
+                          </GalleryItem>
+                        )})}
+                      </Gallery>
+                      <LightboxModal visible={showLightbox} onKeyUp={e => this.handleKeyDown(e)}>
+                        <LightboxContent>
+                        <Img fluid={images[selectedImage].image.childImageSharp.fluid} />
+                          <Controls>
+                            <KeyboardArrowLeft onClick={this.goBack} disabled={selectedImage === 0} style={{ display: "block", color: "white", fontSize: "50px" }} />
+                            <Clear onClick={this.closeModal} style={{ display: "block", color: "white", fontSize: "50px" }} />
+                            <KeyboardArrowRight onClick={this.goForward} disabled={selectedImage === images.length - 1} style={{ display: "block", color: "white", fontSize: "50px" }} />
+                          </Controls>
+                        </LightboxContent>
+                      </LightboxModal>
+                  <ContentWrapper>
+                    <Date>{post.node.frontmatter.date}</Date>
+                    <Content
+                      dangerouslySetInnerHTML={{ __html: post.node.html }}
+                    />
+                  </ContentWrapper>
+              </div>
+            )
+          }
+        )}
+      </Wrapper>
     </Layout>
     )
   }
@@ -158,7 +154,7 @@ query($absolutePathRegex: String!)
         id
         html
         frontmatter {
-          date(formatString: "MMMM DD, YYYY")
+          date(formatString: "DD-MM-YYYY")
           title
           gallery {
             image {
@@ -213,10 +209,16 @@ query($absolutePathRegex: String!)
 
 const Wrapper = styled.div`
   display: relative;
-  height: 50vh;
+  height: auto;
   padding: 20px;
   width: 70%;
   padding-left: 15%;
+`
+
+const ImgWrapper = styled.div`
+  display: relative;
+  height: 50vh;
+  padding: 20px;
 `
 
 const TitleWrapper = styled.div`
@@ -237,13 +239,9 @@ const ContentWrapper = styled.div`
   font-size: 30px;
 `
 
-// const Gallery = styled.div`
-//   display: relative;
-//   height: 50vh;
-//   padding: 20px;
-//   width: 70%;
-//   padding-left: 15%;
-// `
+const Content = styled.div`
+  flex: 1 0 auto;
+`
 
 const Hero = styled.div`
   display: block;

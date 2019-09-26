@@ -7,7 +7,7 @@ class Footer extends React.Component {
         return(
 
             <StyleWrapper>
-
+                <ContentWrapper></ContentWrapper>
             </StyleWrapper>   
         );
     }
@@ -18,8 +18,15 @@ class Footer extends React.Component {
 export default Footer;
 
 const StyleWrapper = styled.div`
-background-color: #FE65B7;
-width: 100%;
-height: 300px;
-bottom: 0;
+  height: 100px;
+  width: 100%;
+  overflow: hidden;
+
+`
+const ContentWrapper = styled.div`
+  height: 100px;
+  width: 100%;
+  overflow: hidden;
+  background: #FE65B7;
+
 `

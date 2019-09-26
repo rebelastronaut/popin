@@ -14,6 +14,7 @@ class Events extends Component {
         return (
             <div>
               <EventsWrapper>
+              {console.log(this)}
                 {this.props.data.allMarkdownRemark.edges.map(
                     (image, i) => {
                         return (

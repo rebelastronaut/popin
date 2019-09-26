@@ -11,6 +11,7 @@ const Events = ({ data }) => (
         <Layout>
           <SEO title="Home" />
             <Wrapper>
+              {console.log(this)}
               {data.allMarkdownRemark.edges.map(
                 (post, i) => {
                     return (
@@ -43,7 +44,7 @@ export const pageQuery = graphql`
       node {
         id
         frontmatter {
-          date(formatString: "MMMM DD, YYYY")
+          date(formatString: "DD-MM-YYYY")
           title
           cover {
             childImageSharp {
@@ -78,28 +79,31 @@ const Wrapper = styled.div`
 const ContentWrapper = styled.div`
   flex-grow: 1;
   flex-shrink: 1;
-  padding-left: 20%;
-  width: 60%;
-  text-align: left;
+  padding-left: 10%;
+  width: 80%;
+  text-align: centre;
   margin-bottom: 20px;
   margin-top: 20px;
 `
 const TitleWrapper = styled.div`
-  margin: 20px;
-  height: 20%;
-  margin-bottom: 10%;
-  border-radius: 20px;
+  position: absolute;
   width: 100%;
+  bottom: 20%;
+  height: 23%;
+  line-height: 50px;
   background-color: #62EDD6;
-  text-decoration: none !important;
 `
 const FontWrapper = styled.div`
-  font-family: 'Concert One', cursive;
-  color: white;
+  text-align: center;
   font-size: 3em;
+  color: white;
+  height: 100px;
+  white-space: pre-wrap;
+  font-family: 'Concert One', cursive;
 `
 
 const ImgWrapper = styled.div`
   width: 100%;
   height: 500px;
+  border-radius: 20px;
 `

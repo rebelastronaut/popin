@@ -18,16 +18,18 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <>
+    <div>
+    <Content>
       <link href="https://fonts.googleapis.com/css?family=Concert+One&display=swap" rel="stylesheet"></link>
       <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"></link>
       <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
       <Header siteTitle={data.site.siteMetadata.title} />
-        <Content>
-          <main>{children}</main>
-        </Content>
-      <Footer/>
-    </>
+      <Stuff>
+        {children}
+      </Stuff>
+    </Content>
+    <StyledFooter/>
+    </div>
   )
 }
 
@@ -38,5 +40,14 @@ Layout.propTypes = {
 export default Layout
 
 const Content = styled.div`
-  padding-bottom: 300px;
+   width: 100%;
+   min-height: 100vh;
+   margin-bottom: -100px;
+`
+
+const Stuff = styled.div`
+   margin-bottom: 100px;
+`
+
+const StyledFooter = styled(props => <Footer {...props} />)`
 `
