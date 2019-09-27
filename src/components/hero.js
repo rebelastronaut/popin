@@ -82,7 +82,7 @@ export default props => (
 
 const StyledWrapper = styled.div`
   width: 100%;
-  height: 87vh;
+  height: 89vh;
   min-height: 600px;
   border-radius: 20;
   display: flex;
