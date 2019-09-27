@@ -53,7 +53,7 @@ export default props => (
               node {
                 id
                 frontmatter {
-                  date(formatString: "MMMM DD, YYYY")
+                  date
                   title
                   cover {
                     childImageSharp {
