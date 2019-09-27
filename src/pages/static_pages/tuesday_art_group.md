@@ -1,7 +1,7 @@
 ---
 cover: /src/pages/images/IMG_20170110_202052.jpg
 gallery: []
-title: Tuesday Art Group
+title: TuesdayArtGroup
 date: 2019-09-12T18:42:54.253Z
 path: /tuesday-art-group
 ---

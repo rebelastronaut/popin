@@ -44,7 +44,7 @@ export const pageQuery = graphql`
       node {
         id
         frontmatter {
-          date(formatString: "DD-MM-YYYY")
+          date
           title
           cover {
             childImageSharp {

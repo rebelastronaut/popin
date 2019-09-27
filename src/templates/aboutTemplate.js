@@ -19,6 +19,7 @@ export default class PageTemplate extends React.Component {
                       <div>
                         <Wrapper>
                           <ImgWrapper>
+                          {console.log(post)}
                           <BackgroundImg key={post.node.frontmatter.cover.childImageSharp.id} fadeIn={true} style={{ height: "100%", borderRadius: "20px" }} fluid={post.node.frontmatter.cover.childImageSharp.fluid}>
                             <Hero>
                               <TitleWrapper>
@@ -51,7 +52,7 @@ query($absolutePathRegex: String!)
         htmlAst
         html
         frontmatter {
-          date(formatString: "MMMM DD, YYYY")
+          date
           title
           gallery {
             image {

@@ -1,7 +1,7 @@
 ---
 cover: /src/pages/images/20170103_192829.jpg
 gallery: []
-title: Saturday Group
+title: SaturdayGroup
 date: 2019-09-12T18:42:54.253Z
 path: /saturday-group
 ---

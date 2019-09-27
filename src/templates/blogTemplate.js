@@ -154,7 +154,7 @@ query($absolutePathRegex: String!)
         id
         html
         frontmatter {
-          date(formatString: "DD-MM-YYYY")
+          date
           title
           gallery {
             image {

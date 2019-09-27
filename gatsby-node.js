@@ -32,6 +32,7 @@ exports.onCreateNode = ({ node, actions }) => {
     createNodeField({ node, name: 'slug', value: slug })
   }
   fmImagesToRelative(node);
+  console.log(node)
 }
 
 exports.createPages = async ({ graphql, actions }) => {
@@ -47,7 +48,7 @@ exports.createPages = async ({ graphql, actions }) => {
                 fileAbsolutePath
                 frontmatter {
                   title
-                  date(formatString: "DD-MM-YYYY")
+                  date
                 }
               }
             }
