@@ -4,43 +4,55 @@ import { StaticQuery, graphql, Link } from 'gatsby';
 import BackgroundImg from "gatsby-background-image";
 
 class Events extends Component {
-    constructor(props) {
-        super(props);
-    }
+  constructor(props) {
+      super(props);
+  }
 
-    // use React lifecycle methods as needed
+  render() {
+    const isEvents = this.props.path === "/events/";
+    const isStatic = this.props.path === "/static_pages/";
 
-    render() {
-        return (
-            <div>
-              <EventsWrapper>
-              {console.log(this)}
-                {this.props.data.allMarkdownRemark.edges.map(
-                    (image, i) => {
-                        return (
-                          <ContentWrapper>
-                            {console.log(this)}
-                            <Link to={"/events/" + image.node.frontmatter.title.toLowerCase()}>
-                              <BackgroundImg key={image.node.frontmatter.title} style={{ height: "100%", borderRadius: "20px"}} fadeIn={true} fluid={image.node.frontmatter.cover.childImageSharp.fluid}>
-                                <Hover>
-                                  <TitleWrapper style={{ backgroundColor: this.props.BackgroundColors[i] }}>{image.node.frontmatter.title} ({image.node.frontmatter.date})</TitleWrapper>
-                                </Hover>
-                              </BackgroundImg>
-                            </Link>
-                          </ContentWrapper>
-                        )
-                    }
-                )}
-              </EventsWrapper>
-              <Link to="/events">
-                <MoreEventsWrapper>
-                  <MoreEvents> More Events</MoreEvents>
-                </MoreEventsWrapper>
-              </Link>
-            </div>
-        );
+    return (
+        <div>
+          <EventsWrapper>
+            {this.props.data.allMarkdownRemark.edges.map(
+                (image, i) => {
+                  if (image.node.fileAbsolutePath.includes(this.props.path))
+                    return (
+                      <ContentWrapper>
+                        {isStatic ? (
+                          <Link to={image.node.frontmatter.title.toLowerCase().split(" ").join("_")}>
+                            <BackgroundImg key={image.node.frontmatter.title} style={{ height: "100%", borderRadius: "20px"}} fadeIn={true} fluid={image.node.frontmatter.cover.childImageSharp.fluid}>
+                              <Hover>
+                                <TitleWrapper style={{ backgroundColor: this.props.BackgroundColors[i % this.props.BackgroundColors.length] }}>{image.node.frontmatter.title} </TitleWrapper>
+                              </Hover>
+                            </BackgroundImg>
+                          </Link>):(
+                          <Link to={this.props.path + image.node.frontmatter.title.toLowerCase().split(" ").join("_")}>
+                            <BackgroundImg key={image.node.frontmatter.title} style={{ height: "100%", borderRadius: "20px" }} fadeIn={true} fluid={image.node.frontmatter.cover.childImageSharp.fluid}>
+                              <Hover>
+                                <TitleWrapper style={{ backgroundColor: this.props.BackgroundColors[i % this.props.BackgroundColors.length] }}>{image.node.frontmatter.title}  {isEvents ? ((image.node.frontmatter.date)) : (<div />)}</TitleWrapper>
+                              </Hover>
+                            </BackgroundImg>
+                          </Link>
+                        )}
+                      </ContentWrapper>
+                    )
+                }
+            )}
+          </EventsWrapper>
+          {isEvents ? (
+            <Link to={this.props.path}>
+              <MoreEventsWrapper>
+                <MoreEvents> More Events</MoreEvents>
+              </MoreEventsWrapper>
+            </Link>
+            ):(<div/>)
+          }
+        </div>
+    );
 
-    }
+  }
 
 }
 export default props => (
@@ -48,12 +60,13 @@ export default props => (
     <StaticQuery
         query={graphql`
         {
-          allMarkdownRemark(limit: 3, sort: {order: DESC, fields: [frontmatter___date]}, filter: {fileAbsolutePath: {regex: "/events/"}}) {
+          allMarkdownRemark(sort: {order: DESC, fields: [frontmatter___date]}) {
             edges {
               node {
                 id
+                fileAbsolutePath
                 frontmatter {
-                  date
+                  date(formatString: "DD-MM-YYYY")
                   title
                   cover {
                     childImageSharp {
@@ -96,7 +109,7 @@ const EventsWrapper = styled.div`
 `
 
 const ContentWrapper = styled.div`
-  overflow: hidden;
+  // overflow: hidden;
   padding: 10px;
   min-width: 300px;
   min-height: 48vh;

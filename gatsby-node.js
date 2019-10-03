@@ -32,7 +32,6 @@ exports.onCreateNode = ({ node, actions }) => {
     createNodeField({ node, name: 'slug', value: slug })
   }
   fmImagesToRelative(node);
-  console.log(node)
 }
 
 exports.createPages = async ({ graphql, actions }) => {
@@ -64,11 +63,15 @@ exports.createPages = async ({ graphql, actions }) => {
     const prev = index === projectPosts.length - 1 ? null : projectPosts[index + 1]
     if (n.node.fileAbsolutePath.indexOf('events') >= 0) {
       projectTemplate = require.resolve('./src/templates/blogTemplate.js');
-      slug = "/events/" + n.node.frontmatter.title.toLowerCase();
+      slug = "/events/" + n.node.frontmatter.title.toLowerCase().split(" ").join("_");
+    }
+    else if (n.node.fileAbsolutePath.indexOf('groups') >= 0) {
+      projectTemplate = require.resolve('./src/templates/aboutTemplate.js');
+      slug = "/groups/" + n.node.frontmatter.title.toLowerCase().split(" ").join("_");;
     }
     else {
       projectTemplate = require.resolve('./src/templates/aboutTemplate.js');
-      slug = n.node.frontmatter.title.toLowerCase();
+      slug = n.node.frontmatter.title.toLowerCase().split(" ").join("_");
     }
     createPage({
       path: slug,

@@ -28,5 +28,4 @@ const ContentWrapper = styled.div`
   width: 100%;
   overflow: hidden;
   background: #FE65B7;
-
 `

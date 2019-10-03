@@ -1,9 +1,7 @@
 ---
 cover: /src/pages/images/IMG_20170110_202052.jpg
-gallery: []
-title: TuesdayArtGroup
+title: Tuesday Art Group
 date: 2019-09-12T18:42:54.253Z
-path: /tuesday-art-group
 ---
 Tuesday Art group runs 6-30pm to 8pm – 48 weeks of the year.
 

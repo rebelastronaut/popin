@@ -1,9 +1,7 @@
 ---
-cover: /src/pages/images/AC3I9969.JPG
-gallery: []
-title: About
+cover: ../images/AC3I9969.JPG
+title: About Us
 date: 2019-09-12T18:42:54.253Z
-path: /about
 ---
 Who We Are
 

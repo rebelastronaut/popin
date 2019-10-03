@@ -15,11 +15,11 @@ export default class PageTemplate extends React.Component {
         <Layout>
           {this.props.data.allMarkdownRemark.edges.map(
               (post, i) => {
+                console.log(post)
                   return (
                       <div>
                         <Wrapper>
                           <ImgWrapper>
-                          {console.log(post)}
                           <BackgroundImg key={post.node.frontmatter.cover.childImageSharp.id} fadeIn={true} style={{ height: "100%", borderRadius: "20px" }} fluid={post.node.frontmatter.cover.childImageSharp.fluid}>
                             <Hero>
                               <TitleWrapper>
@@ -54,29 +54,6 @@ query($absolutePathRegex: String!)
         frontmatter {
           date
           title
-          gallery {
-            image {
-              absolutePath
-              id
-              name
-              childImageSharp {
-                fluid {
-                  base64
-                  tracedSVG
-                  aspectRatio
-                  src
-                  srcSet
-                  srcWebp
-                  srcSetWebp
-                  sizes
-                  originalImg
-                  originalName
-                  presentationWidth
-                  presentationHeight
-                }
-              }
-            }
-          }
           cover {
             id
             name

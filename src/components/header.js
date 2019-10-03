@@ -32,31 +32,34 @@ export default class Header extends React.Component {
           <MobileStyle>
             <FaBars onClick={this.handleClick} style={{position: "absolute", top:"10px", left: "0px"}}/>
             <DropdownMenu visible={this.state.showMenu}>
-              <StyledLink> About Us</StyledLink>
-              <StyledLink> Events</StyledLink>
-              <StyledLink> Join Us</StyledLink>
-              <StyledLink> Volunteer</StyledLink>
-              <StyledLink> Donate</StyledLink>
+              <StyledLink onClick={this.closeModal} to="/about_us"> About Us</StyledLink>
+              <StyledLink onClick={this.closeModal} to="/events"> Events</StyledLink>
+              <StyledLink onClick={this.closeModal} to="/find_us"> Find US</StyledLink>
+              <StyledLink onClick={this.closeModal} to="/groups"> Join Us</StyledLink>
+              <StyledLink onClick={this.closeModal} to="volunteer_with_us"> Volunteer</StyledLink>
+              <StyledLink onClick={this.closeModal} to="/donate"> Donate</StyledLink>
+
               <FaTimes onClick={this.closeModal} style={{ fontSize: "1.5em" }} />
             </DropdownMenu>
           </MobileStyle>
           <TitleStyle>
-            <StyledLink to="/about/">
+            <StyledLink to="/about_us/">
               About Us
             </StyledLink>   
             <StyledLink to="/events/">
                 Events
             </StyledLink> 
-            <StyledLink>
-              Join Us
+            <StyledLink to="/groups">
+              Join Us 
             </StyledLink>
           </TitleStyle>
           <StyledLink>
             <Link to="/" style={{ color: "white", fontSize:"2em"  }}>pop in </Link>
           </StyledLink>
           <TitleStyle>
-            <StyledLink>Volunteer</StyledLink>
-            <StyledLink>Donate</StyledLink>
+            <StyledLink to="/find_us/">Find Us</StyledLink>
+            <StyledLink to="volunteer_with_us">Volunteer</StyledLink>
+            <StyledLink to="/donate/">Donate</StyledLink>
           </TitleStyle>
         </HeaderStyle>
       </header>

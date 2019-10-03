@@ -1,9 +1,7 @@
 ---
 cover: /src/pages/images/20170103_192829.jpg
-gallery: []
-title: SaturdayGroup
+title: Saturday Group
 date: 2019-09-12T18:42:54.253Z
-path: /saturday-group
 ---
 Saturday Pop-In Club runs 11am to 1pm – 48 weeks of the year
 

@@ -19,12 +19,24 @@ collections:
       preview: true
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Publish Date", name: "date", widget: "datetime", format: "DD-MM-YYYY"}
-      - { label: "Path", name: "path", widget: "string"}
+      - { label: "Publish Date", name: "date", widget: "datetime"}
       - { label: "Cover Image", name: "cover", widget: "image"}
       - { label: Gallery Images, name: "gallery", widget: list, fields: [{ label: Image, name: image, widget: image }]}
       - { label: "Body", name: "body", widget: "markdown" }
-
+  - name: "Groups"
+    label: "groups"
+    identifier_field: title
+    folder: "src/pages/groups"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    editor:
+      preview: true
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime"}
+      - { label: "Cover Image", name: "cover", widget: "image"}
+      - { label: Gallery Images, name: "gallery", widget: list, fields: [{ label: Image, name: image, widget: image }]}
+      - { label: "Body", name: "body", widget: "markdown" }
   - name: "Static Pages"
     label: "static_pages"
     identifier_field: title
@@ -32,43 +44,43 @@ collections:
     editor:
      preview: true
     files:
-      - file: "src/pages/static_pages/about.md"
+      - file: "src/pages/about/about.md"
         label: "About"
         name: "about"
         fields:
         - { label: "Cover Image", name: "cover", widget: "image" }
-        - { label: "Gallery Images", name: "gallery", widget: list, fields: [{label: Image, name: image, widget: image}]}
         - { label: "Title", name: "title", widget: "string"}
-        - { label: "Publish Date", name: "date", widget: "datetime", format: "DD-MM-YYYY"}
-        - { label: "Path", name: "path", widget: "string"}
+        - { label: "Publish Date", name: "date", widget: "datetime"}
         - { label: "Body", name: "body", widget: "markdown"}
       - file: "src/pages/static_pages/donate.md"
         label: "Donate"
         name: "donate"
         fields:
         - { label: "Cover Image", name: "cover", widget: "image" }
-        - { label: "Gallery Images", name: "gallery", widget: list, fields: [{label: Image, name: image, widget: image}]}
         - { label: "Title", name: "title", widget: "string"}
-        - { label: "Publish Date", name: "date", widget: "datetime", format: "DD-MM-YYYY"}
-        - { label: "Path", name: "path", widget: "string"}
+        - { label: "Publish Date", name: "date", widget: "datetime"}
         - { label: "Body", name: "body", widget: "markdown"}
-      - file: "src/pages/static_pages/tuesday_art_group.md"
+      - file: "src/pages/groups/tuesday_art_group.md"
         label: "Tuesday Art Group"
         name: "tuesday_art_group"
         fields:
         - { label: "Cover Image", name: "cover", widget: "image" }
-        - { label: "Gallery Images", name: "gallery", widget: list, fields: [{label: Image, name: image, widget: image}]}
         - { label: "Title", name: "title", widget: "string"}
-        - { label: "Publish Date", name: "date", widget: "datetime", format: "DD-MM-YYYY"}
-        - { label: "Path", name: "path", widget: "string"}
+        - { label: "Publish Date", name: "date", widget: "datetime"}
         - { label: "Body", name: "body", widget: "markdown"}
-      - file: "src/pages/static_pages/saturday_group.md"
+      - file: "src/pages/groups/saturday_group.md"
         label: "Saturday Group"
         name: "saturday_group"
         fields:
         - { label: "Cover Image", name: "cover", widget: "image" }
-        - { label: "Gallery Images", name: "gallery", widget: list, fields: [{label: Image, name: image, widget: image}]}
         - { label: "Title", name: "title", widget: "string"}
-        - { label: "Publish Date", name: "date", widget: "datetime", format: "DD-MM-YYYY"}
-        - { label: "Path", name: "path", widget: "string"}
+        - { label: "Publish Date", name: "date", widget: "datetime"}
+        - { label: "Body", name: "body", widget: "markdown"}
+      - file: "src/pages/static_pages/volunteer.md"
+        label: "Volunteer"
+        name: "Volunteer"
+        fields:
+        - { label: "Cover Image", name: "cover", widget: "image" }
+        - { label: "Title", name: "title", widget: "string"}
+        - { label: "Publish Date", name: "date", widget: "datetime"}
         - { label: "Body", name: "body", widget: "markdown"}

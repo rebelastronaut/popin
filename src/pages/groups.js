@@ -8,21 +8,20 @@ import "../components/layout.css"
 
 const backgroundColors = ["#E9C904", "#8FC33A", "#62EDD6"]
 
-const Events = ({ data }) => (
+const Groups = ({ data }) => (
     <div>
         <Layout>
           <SEO title="Home" />
             <Wrapper>
-              {console.log(this)}
               {data.allMarkdownRemark.edges.map(
                 (post, i) => {
                     return (
                         <ContentWrapper>
-                          <Link to={"/events/" + post.node.frontmatter.title.toLowerCase().split(" ").join("_")}>
+                          <Link to={"/groups/" + post.node.frontmatter.title.toLowerCase().split(" ").join("_")}>
                               <BackgroundImg fluid={post.node.frontmatter.cover.childImageSharp.fluid} fadeIn={true}>
                                   <ImgWrapper>
                                       <TitleWrapper style={{ backgroundColor: backgroundColors[i % backgroundColors.length] }} >
-                                        <FontWrapper>{post.node.frontmatter.title} ({post.node.frontmatter.date})</FontWrapper>  
+                                        <FontWrapper>{post.node.frontmatter.title}</FontWrapper>  
                                       </TitleWrapper>
                                   </ImgWrapper>
                               </BackgroundImg>
@@ -36,12 +35,12 @@ const Events = ({ data }) => (
     </div>
 )
 
-export default Events
+export default Groups
 
 
 export const pageQuery = graphql`
 {
-  allMarkdownRemark(sort: {order: DESC, fields: [frontmatter___date]}, filter: {fileAbsolutePath: {regex: "/events/"}}) {
+  allMarkdownRemark(sort: {order: DESC, fields: [frontmatter___date]}, filter: {fileAbsolutePath: {regex: "/groups/"}}) {
     edges {
       node {
         id
