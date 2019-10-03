@@ -52,7 +52,7 @@ class FindUs extends Component {
                     </Contact>
                     <MapContainer>
                         <GoogleMapReact
-                            bootstrapURLKeys={{ key:"AIzaSyBzczmO9xBr7i_uF2wD3fUq05Zn4itR4Qg" }}
+                            bootstrapURLKeys={{key:process.env.MAPS_API_KEY}}
                             defaultCenter={this.props.center}
                             defaultZoom={this.props.zoom}
                             options={createMapOptions}
