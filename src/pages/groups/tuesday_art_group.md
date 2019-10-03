@@ -1,5 +1,5 @@
 ---
-cover: /src/pages/images/IMG_20170110_202052.jpg
+cover: /src/pages/images/01_images of exhibition art.jpg
 title: Tuesday Art Group
 date: 2019-09-12T18:42:54.253Z
 ---

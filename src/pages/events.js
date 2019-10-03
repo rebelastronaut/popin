@@ -13,7 +13,7 @@ const Events = ({ data }) => (
         <Layout>
           <SEO title="Home" />
             <Wrapper>
-              {console.log(this)}
+              {console.log(data)}
               {data.allMarkdownRemark.edges.map(
                 (post, i) => {
                     return (

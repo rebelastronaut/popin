@@ -1,5 +1,5 @@
 ---
-cover: /src/pages/images/20170103_192829.jpg
+cover: /src/pages/images/02_hands on drums.jpg
 title: Saturday Group
 date: 2019-09-12T18:42:54.253Z
 ---

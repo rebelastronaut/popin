@@ -7,7 +7,7 @@ class Groups extends Component {
   constructor(props) {
     super(props);
     this.path = "";
-    if (this.props.path != "/static_pages/") {
+    if (this.props.path !== "/static_pages/") {
       this.path = this.props.path;
     }
   }

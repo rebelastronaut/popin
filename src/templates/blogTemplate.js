@@ -58,7 +58,6 @@ export default class BlogTemplate extends React.Component {
   }
 
   goForward = () => {
-    console.log(this)
     if (this.state.selectedImage < this.state.gallerylength - 1) {
       this.setState({ selectedImage: this.state.selectedImage + 1 })
     }
@@ -89,7 +88,7 @@ export default class BlogTemplate extends React.Component {
   }
 
   render() {
-
+    console.log("testing")
     const { showLightbox, selectedImage } = this.state
     return (
       <Layout>
@@ -121,7 +120,7 @@ export default class BlogTemplate extends React.Component {
                       </Gallery>
                       <LightboxModal visible={showLightbox} onKeyUp={e => this.handleKeyDown(e)}>
                         <LightboxContent>
-                        <Img fluid={images[selectedImage].image.childImageSharp.fluid} />
+                         <Img imgStyle={{ objectFit: 'contain' }} fluid={images[selectedImage].image.childImageSharp.fluid} style={{maxHeight: "80vh", maxWidth: "80vw"}}/>
                           <Controls>
                             <KeyboardArrowLeft onClick={this.goBack} disabled={selectedImage === 0} style={{ display: "block", color: "white", fontSize: "50px" }} />
                             <Clear onClick={this.closeModal} style={{ display: "block", color: "white", fontSize: "50px" }} />

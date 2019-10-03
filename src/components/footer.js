@@ -7,7 +7,7 @@ class Footer extends React.Component {
         return(
 
             <StyleWrapper>
-                <ContentWrapper></ContentWrapper>
+                <ContentWrapper> Copyright Rebel Astronaut 2019 </ContentWrapper>
             </StyleWrapper>   
         );
     }
@@ -28,4 +28,8 @@ const ContentWrapper = styled.div`
   width: 100%;
   overflow: hidden;
   background: #FE65B7;
+  color: white;
+  font-family: 'Concert One', cursive;
+  padding: 30px;
+  text-align: center;
 `
