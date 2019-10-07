@@ -84,9 +84,9 @@ module.exports = {
               logo: "./src/favicon.png",
 
               // WebApp Manifest Configuration
-              appName: null, // Inferred with your package.json
-              appDescription: null,
-              developerName: null,
+              appName: "Pop In", // Inferred with your package.json
+              appDescription: "pop in community group",
+              developerName: "gileshinchcliff",
               developerURL: null,
               dir: 'auto',
               lang: 'en-US',
