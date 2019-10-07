@@ -106,6 +106,9 @@ const TitleWrapper = styled.div`
   font-size: 6em;
   background-color: #62EDD6;
   border-radius: 20px;
+  @media (max-width: 600px) {
+    font-size: 4em;
+  }
 `
 
 const ContentWrapper = styled.div`

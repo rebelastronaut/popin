@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Pop In`,
-    description: `We Are PopIn`,
+    description: `Pop In Community group`,
     author: `@gileshinchcliff`,
   },
   plugins: [
@@ -116,6 +116,12 @@ module.exports = {
       resolve: `gatsby-plugin-manifest`,
       options: {
         icon: `src/favicon.png`,
+        name: `Pop In Community Group`,
+        short_name: `Pop In`,
+        start_url: `/`,
+        background_color: `#FE65B7`,
+        theme_color: `#FE65B7`,
+        display: `standalone`,
       },
     },
     `gatsby-plugin-netlify-cms`,  

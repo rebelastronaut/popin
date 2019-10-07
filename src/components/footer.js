@@ -28,7 +28,7 @@ const ContentWrapper = styled.div`
   overflow: hidden;
   background: #FE65B7;
   color: white;
+  padding-top: 30px;
   font-family: 'Concert One', cursive;
-  padding: 30px;
   text-align: center;
 `
