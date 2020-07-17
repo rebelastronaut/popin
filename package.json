@@ -39,7 +39,7 @@
     "google-map-react": "^1.1.5",
     "google-maps-react": "^2.0.2",
     "hast-to-hyperscript": "^7.0.2",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "netlify-cms-app": "^2.9.7",
     "netlify-identity-widget": "^1.5.5",
     "nuka-carousel": "^4.5.11",
